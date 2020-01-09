@@ -47,7 +47,9 @@ export function fetchFileSummary() {
 	return fetch(FILE_SUMMARY_API_URL)
 		.then(HttpService.checkResponseStatus)
 		.then(resp => resp.json())
-		.then(bindFileSummaryResponse);
+		.then(bindFileSummaryResponse)
+		.then(addProdSummaryCounts)
+		;
 }
 
 /**
@@ -59,6 +61,26 @@ export function fetchTermFacets() {
 		.then(HttpService.checkResponseStatus)
 		.then(resp => resp.json())
 		.then(bindTermFacetsResponse);
+}
+
+/**
+ * Add production summary counts to current set of summary counts, for demo purposes only.
+ */
+function addProdSummaryCounts(fileSummary) {
+
+	const prodSummaryCounts = {
+		cellCount: 4535231,
+		donorCount: 294,
+		labCount: 81,
+		organCount: 34,
+		projectCount: 29
+	};
+	
+	const updatedFileSummary = Object.assign({}, fileSummary);
+	Object.keys(prodSummaryCounts).forEach(countKey => {
+		updatedFileSummary[countKey] = updatedFileSummary[countKey] + prodSummaryCounts[countKey];
+	});
+	return updatedFileSummary;
 }
 
 /**
