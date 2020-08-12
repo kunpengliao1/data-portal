@@ -7,7 +7,7 @@ description: "Overview of the HCA DCP Optimus analysis workflow."
 
 # Introduction to the Optimus Workflow
 
-The long-term goal of the Optimus workflow is to support any 3 prime single cell transcriptomics assay selected by the HCA project. Using the correct modularity, we hope to grow a generic pipeline that has specific modules to address differences in assays, while leveraging common code where steps of the assays are the same. We offer this as a community resource for community development and improvement. The first assay this workflow supports is the [10x v2 and v3 gene expression assay](https://www.10xgenomics.com/solutions/single-cell/). Optimus has been validated for analyzing both [human](https://github.com/HumanCellAtlas/skylab/blob/master/benchmarking/optimus/optimus_report.rst) and [mouse](https://docs.google.com/document/d/1_3oO0ZQSrwEoe6D3GgKdSmAQ9qkzH_7wrE7x6_deL10/edit) data sets. 
+The long-term goal of the Optimus workflow is to support any 3 prime single-cell or single- nuclei transcriptomics assay selected by the HCA project. Using the correct modularity, we hope to grow a generic pipeline that has specific modules to address differences in assays, while leveraging common code where steps of the assays are the same. We offer this as a community resource for community development and improvement. The workflow supports the [10x v2 and v3 gene expression assay](https://www.10xgenomics.com/solutions/single-cell/). Optimus has been validated for analyzing single-cell and [single-nuclei](https://docs.google.com/document/d/1rv2M7vfpOzIOsMnMfNyKB4HV18lQ9dnOGHK2tPikiH0/edit) from both [human](https://github.com/HumanCellAtlas/skylab/blob/master/benchmarking/optimus/optimus_report.rst) and [mouse](https://docs.google.com/document/d/1_3oO0ZQSrwEoe6D3GgKdSmAQ9qkzH_7wrE7x6_deL10/edit) data sets. 
 
 ## Commonalities Among Sequencing Assays
 
@@ -23,7 +23,7 @@ The bead-specific barcodes and UMIs are encoded on sequencing primers that also 
 
 | Pipeline Features | Description | Source |
 |-------------------|---------------------------------------------------------------|-----------------------|
-| Assay Type | 10x Single Cell Expression (v2 and v3) |[10x Genomics](https://www.10xgenomics.com)
+| Assay Type | 10x Single Cell/Nuclei Expression (v2 and v3) |[10x Genomics](https://www.10xgenomics.com)
 | Overall Workflow  |Quality control module and transcriptome quantification module | Code available from [Github](https://github.com/HumanCellAtlas/skylab/blob/master/pipelines/optimus/Optimus.wdl) |
 | Workflow Language | WDL | [openWDL](https://github.com/openwdl/wdl) |
 | Genomic Reference Sequence| GRCh38 human genome primary sequence and M21 (GRCm38.p6) mouse genome primary sequence | GENCODE [Human](https://www.gencodegenes.org/human/release_27.html) and [Mouse](https://www.gencodegenes.org/mouse/release_M21.html) |
@@ -31,11 +31,13 @@ The bead-specific barcodes and UMIs are encoded on sequencing primers that also 
 | Aligner           | STAR       | [Dobin, et al.,2013](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3530905/) |
 | Transcript Quantification |Utilities for processing large-scale single cell datasets |[Sctools](https://github.com/HumanCellAtlas/sctools) |                      
 |Data Input File Format |File format in which sequencing data is provided |[FASTQ](https://academic.oup.com/nar/article/38/6/1767/3112533) |                       
-| Data Output File Format | File formats in which Optimus output is provided | [BAM](http://samtools.github.io/hts-specs/), [Zarr version 2](https://zarr.readthedocs.io/en/stable/spec/v2.html), Python numpy arrays (internal), [Loom](http://loompy.org/) |
+| Data Output File Format | File formats in which Optimus output is provided | [BAM](http://samtools.github.io/hts-specs/), [Loom version 3](http://loompy.org/) |
 
-## Optimus Modules Summary
+## Optimus Summary
 
-Here we describe the modules of Optimus; [the code](https://github.com/HumanCellAtlas/skylab/blob/master/pipelines/optimus/Optimus.wdl) and [library of tasks](https://github.com/HumanCellAtlas/skylab/tree/master/library/tasks) are available through Github.
+Here we describe the modules of Optimus; [the code](https://github.com/HumanCellAtlas/skylab/blob/master/pipelines/optimus/Optimus.wdl) and [library of tasks](https://github.com/HumanCellAtlas/skylab/tree/master/library/tasks) are available through GitHub.
+
+The workflow runs in two modes: single-cell (sc_rna) or single-nuclei (sn_rna). When appropriate, differences between the modes are noted.
 
 Overall, the workflow:
 1. corrects cell barcodes and Unique Molecular Identifiers (UMIs)
@@ -43,7 +45,7 @@ Overall, the workflow:
 3. generates an expression count matrix in a UMI-aware fashion
 4. detects empty droplets
 5. calculates summary statistics
-6. returns output in BAM and Zarr file formats
+6. returns output in BAM and Loom file formats
 
 Special care is taken to avoid the removal of reads that are not aligned or that do not contain recognizable barcodes. This design (which differs from many pipelines currently available) allows use of the entire dataset by those who may want to use alternative filtering or leverage the data for methodological development associated with the data processing.
 
@@ -75,7 +77,14 @@ The [STAR alignment](https://github.com/HumanCellAtlas/skylab/blob/master/librar
 
 ## Gene Annotation
 
-The [TagGeneExon](https://github.com/HumanCellAtlas/skylab/blob/master/library/tasks/TagGeneExon.wdl) tool then annotates each read with the type of sequence to which it aligns. These annotations include INTERGENIC, INTRONIC, and EXONIC, and are stored using the XF BAM tag. In cases where the gene corresponds to an intron or exon, the name of the gene that overlaps the alignment is associated with the read and stored using the GE BAM tag.
+The [TagGeneExon](https://github.com/HumanCellAtlas/skylab/blob/master/library/tasks/TagGeneExon.wdl) task then annotates each read with the type of sequence to which it aligns. These annotations differ between single-cell and single-nuclei modes.
+
+#### Single-cell mode
+
+Annotations include INTERGENIC, INTRONIC, UTR and CODING (EXONIC), and are stored using the 'XF' BAM tag. In cases where the gene corresponds to an exon or UTR, the name of the gene that overlaps the alignment is associated with the read and stored using the GE BAM tag.
+
+#### Single-nuclei mode
+Annotations include INTERGENIC, INTRONIC, UTR and CODING (EXONIC), and are stored using the 'XF' BAM tag. In cases where the gene corresponds to an exon, UTR, or intron, the name of the gene that overlaps the alignment is associated with the read and stored using the 'GE' BAM tag.
 
 ## UMI Correction
 
@@ -87,7 +96,7 @@ A number of [quality control tools](https://github.com/HumanCellAtlas/sctools) a
 
 ## Identification of Empty Droplets
 
-In addition, the pipeline runs the EmptyDrops function from the [dropletUtils](http://bioconductor.org/packages/release/bioc/html/DropletUtils.html) R package to identify cell barcodes that correspond to empty droplets. Empty droplets are those that did not encapsulate a cell but instead acquired cell-free RNA from the solution in which the cells resided -- such as secreted RNA or RNA released when some cells lysed in solution ([Lun, et al., 2018](https://www.ncbi.nlm.nih.gov/pubmed/?term=30902100)). This ambient RNA can serve as a substrate for reverse transcription, leading to a small number of background reads. Cell barcodes that are not believed to represent cells are identified in the metrics and raw information from dropletUtils is provided to the user.
+For the single-cell mode, the pipeline runs the EmptyDrops function from the [dropletUtils](http://bioconductor.org/packages/release/bioc/html/DropletUtils.html) R package to identify cell barcodes that correspond to empty droplets. Empty droplets are those that did not encapsulate a cell but instead acquired cell-free RNA from the solution in which the cells resided -- such as secreted RNA or RNA released when some cells lysed in solution ([Lun, et al., 2018](https://www.ncbi.nlm.nih.gov/pubmed/?term=30902100)). This ambient RNA can serve as a substrate for reverse transcription, leading to a small number of background reads. Cell barcodes that are not believed to represent cells are identified in the metrics and raw information from dropletUtils is provided to the user.
 
 ## Count Matrix Construction
 
@@ -100,4 +109,5 @@ Outputs of the pipeline include:
 2. Unfiltered, sorted BAM file (BamTags are used to tag reads that could be filtered downstream)
 3. Cell metadata, including cell metrics
 4. Gene metadata, including gene metrics
+
 
