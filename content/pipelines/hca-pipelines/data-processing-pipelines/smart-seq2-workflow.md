@@ -40,7 +40,7 @@ The Smart-seq2 pipeline processes data generated from plate-based Smart-seq2 scR
 
 Choice of appropriate reference sequences and annotations are critical for optimizing the interpretation of reads as transcriptomic features. Currently this pipeline uses the genomic reference sequence GRCh38 and the transcriptomic reference GenCode Comprehensive Gene Annotation v27. Alignment is performed using HISAT2, a fast-paced, cost-efficient tool; gene expression is quantified using the RSEM algorithm.  The overall schematic is shown below.
 
-![Smart seq2](/_images/smart-seq2-diagram.png)
+![Smart seq2](_images/smart-seq2-diagram.png)
 
 ### Quality Control Module
 
