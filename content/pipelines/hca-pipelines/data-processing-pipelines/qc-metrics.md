@@ -24,7 +24,7 @@ The Smart-seq2 pipeline processes data generated from plate-based Smart-seq2 scR
 |`GcBiasMetrics,GcBiasDetailMetrics`|[CollectMultipleMetrics](https://broadinstitute.github.io/picard/command-line-overview.html#CollectMultipleMetrics) |[Metrics Definitions](https://broadinstitute.github.io/picard/picard-metric-definitions.html#GcBiasDetailMetrics) |
 |`QualityYieldMetrics`| [CollectMultipleMetrics](https://broadinstitute.github.io/picard/command-line-overview.html#CollectMultipleMetrics) |[Metrics Definitions](https://broadinstitute.github.io/picard/picard-metric-definitions.html#CollectQualityYieldMetrics.QualityYieldMetrics) |
 |`SequencingArtifactMetrics`| [CollectMultipleMetrics](https://broadinstitute.github.io/picard/command-line-overview.html#CollectMultipleMetrics) |[Metrics Definitions](https://broadinstitute.github.io/picard/picard-metric-definitions.html#ErrorSummaryMetrics) |
-|`HISAT Metrics` | [HISAT](https://ccb.jhu.edu/software/hisat2/manual.shtml#alignment-summary) | HISAT alignment summary metrics |
+|`HISAT2 Metrics` | [HISAT2](https://ccb.jhu.edu/software/hisat2/manual.shtml#alignment-summary) | HISAT2 alignment summary metrics |
 | `RSEM Metrics` | [RSEM](https://github.com/deweylab/RSEM/blob/master/cnt_file_description.txt) | Metrics from the RSEM cnt file |
 
 ## Optimus Pipeline Metrics
