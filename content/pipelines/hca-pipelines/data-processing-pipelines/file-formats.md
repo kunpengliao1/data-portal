@@ -18,7 +18,7 @@ Loom files can be explored using multiple Python- and R-supported downstream ana
 
 ### Working in Seurat
 
-For use Loom in Seurat, please view the [Loom branch](https://github.com/satijalab/seurat/tree/loom) of the Seurat software in GitHub. You can use the following code to install the Loom branch:
+To use Loom in Seurat, please view the [Loom branch](https://github.com/satijalab/seurat/tree/loom) of the Seurat software in GitHub. You can use the following code to install the Loom branch:
 ```R
 if (!requireNamespace("remotes", quietly = TRUE)) {
   install.packages("remotes")
