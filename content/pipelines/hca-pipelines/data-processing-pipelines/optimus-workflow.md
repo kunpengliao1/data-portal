@@ -35,7 +35,7 @@ The bead-specific barcodes and UMIs are encoded on sequencing primers that also 
 
 ## Optimus Summary
 
-Here we describe the modules of Optimus; [the code](https://github.com/HumanCellAtlas/skylab/blob/master/pipelines/optimus/Optimus.wdl) and [library of tasks](https://github.com/HumanCellAtlas/skylab/tree/master/library/tasks) are available through GitHub.
+Here we describe the modules of Optimus; [the code](https://github.com/broadinstitute/warp/blob/master/pipelines/skylab/optimus/Optimus.wdl) and [library of tasks](https://github.com/broadinstitute/warp/tree/master/tasks/skylab) are available through GitHub.
 
 The workflow runs in two modes: single-cell (sc_rna) or single-nuclei (sn_rna). When appropriate, differences between the modes are noted.
 
@@ -43,7 +43,7 @@ Overall, the workflow:
 1. corrects cell barcodes and Unique Molecular Identifiers (UMIs)
 2. aligns reads to the genome
 3. generates an expression count matrix in a UMI-aware fashion
-4. detects empty droplets
+4. detects empty droplets (single-cell mode only)
 5. calculates summary statistics
 6. returns output in BAM and Loom file formats
 
@@ -55,7 +55,7 @@ A general overview of the pipeline is shown below, followed by more detailed des
 
 ## Input Data Preparation 
 
-Each 10X v2 and v3 3’ sequencing experiment generates triplets of Fastq files:
+Each 10x v2 and v3 3’ sequencing experiment generates triplets of Fastq files:
 
 1. forward reads (R1), containing the unique molecular identifier and cell barcode sequences
 2. reverse reads (R2), which is the alignable genomic information from the mRNA transcript 
@@ -73,11 +73,11 @@ The various BAM files are then [merged, sorted](https://github.com/HumanCellAtla
 
 ## Alignment
 
-The [STAR alignment](https://github.com/HumanCellAtlas/skylab/blob/master/library/tasks/StarAlignBamSingleEnd.wdl) software ([Dobin, et al., 2013](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3530905/) is used to map barcoded reads in the BAM file to the human genome primary assembly reference (see table above for version information). STAR (Spliced Transcripts Alignment to a Reference) is widely-used for RNA-seq alignment and identifies the best matching location(s) on the reference for each sequencing read.
+The [STAR alignment](https://github.com/broadinstitute/warp/tree/master/tasks/skylab/StarAlignBamSingleEnd.wdl) software ([Dobin, et al., 2013](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3530905/) is used to map barcoded reads in the BAM file to the human genome primary assembly reference. STAR (Spliced Transcripts Alignment to a Reference) is widely-used for RNA-seq alignment and identifies the best matching location(s) on the reference for each sequencing read.
 
 ## Gene Annotation
 
-The [TagGeneExon](https://github.com/HumanCellAtlas/skylab/blob/master/library/tasks/TagGeneExon.wdl) task then annotates each read with the type of sequence to which it aligns. These annotations differ between single-cell and single-nuclei modes.
+The [TagGeneExon](https://github.com/broadinstitute/warp/tree/master/tasks/skylab/TagGeneExon.wdl) task then annotates each read with the type of sequence to which it aligns. These annotations differ between single-cell and single-nuclei modes.
 
 #### Single-cell mode
 
