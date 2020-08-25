@@ -73,7 +73,7 @@ The various BAM files are then [merged, sorted](https://github.com/HumanCellAtla
 
 ## Alignment
 
-The [STAR alignment](https://github.com/broadinstitute/warp/tree/master/tasks/skylab/StarAlignBamSingleEnd.wdl) software ([Dobin, et al., 2013](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3530905/) is used to map barcoded reads in the BAM file to the human genome primary assembly reference. STAR (Spliced Transcripts Alignment to a Reference) is widely-used for RNA-seq alignment and identifies the best matching location(s) on the reference for each sequencing read.
+The [STAR alignment](https://github.com/broadinstitute/warp/tree/master/tasks/skylab/StarAlignBamSingleEnd.wdl) software ([Dobin, et al., 2013](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3530905/)) is used to map barcoded reads in the BAM file to the human genome primary assembly reference. STAR (Spliced Transcripts Alignment to a Reference) is widely-used for RNA-seq alignment and identifies the best matching location(s) on the reference for each sequencing read.
 
 ## Gene Annotation
 
@@ -81,10 +81,10 @@ The [TagGeneExon](https://github.com/broadinstitute/warp/tree/master/tasks/skyla
 
 #### Single-cell mode
 
-Annotations include INTERGENIC, INTRONIC, UTR and CODING (EXONIC), and are stored using the 'XF' BAM tag. In cases where the gene corresponds to an exon or UTR, the name of the gene that overlaps the alignment is associated with the read and stored using the GE BAM tag.
+Annotations include INTERGENIC, INTRONIC, UTR and CODING (EXONIC), and are stored using the 'XF' BAM tag. In cases where the gene corresponds to an **exon or UTR**, the name of the gene that overlaps the alignment is associated with the read and stored using the GE BAM tag.
 
 #### Single-nuclei mode
-Annotations include INTERGENIC, INTRONIC, UTR and CODING (EXONIC), and are stored using the 'XF' BAM tag. In cases where the gene corresponds to an exon, UTR, or intron, the name of the gene that overlaps the alignment is associated with the read and stored using the 'GE' BAM tag.
+Annotations include INTERGENIC, INTRONIC, UTR and CODING (EXONIC), and are stored using the 'XF' BAM tag. In cases where the gene corresponds to an **exon, UTR, or intron**, the name of the gene that overlaps the alignment is associated with the read and stored using the GE BAM tag.
 
 ## UMI Correction
 
