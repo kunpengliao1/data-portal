@@ -9,7 +9,7 @@ description: "Overview of Smart-seq2 scRNA sequencing in the HCA DCP."
 
 ## Background
 
-Currently the most technically and economically feasible methodology for single-cell RNA sequencing involves generating (by reverse transcription), amplifying, and then sequencing cDNA copies of the RNA transcripts. One main challenge of this strategy is to overcome the problem of 3’-end bias that limits synthesis of full-length cDNAs. The Smart-seq2 technology has been an important advancement in addressing this challenge, greatly improving recovery of full-length transcripts (Picelli, et al., [2013](https://www.nature.com/articles/nmeth.2639), [2014](https://www.nature.com/articles/nprot.2014.006)).
+Currently the most technically and economically feasible methodology for single-cell RNA sequencing involves generating (by reverse transcription), amplifying, and then sequencing cDNA copies of the RNA transcripts. One main challenge of this strategy is to overcome the problem of 3’-end bias that limits synthesis of full-length cDNAs. The Smart-seq2 technology has been an important advancement in addressing this challenge, greatly improving recovery of full-length transcripts (Picelli et al., [2013](https://www.nature.com/articles/nmeth.2639), [2014](https://www.nature.com/articles/nprot.2014.006)).
 
 ## What is SMART?
 
@@ -25,7 +25,7 @@ The Smart-seq2 pipeline processes data generated from plate-based Smart-seq2 scR
 
 | Pipeline Features | Description | Source |
 |-------------------|---------------------------------------------------------------|-----------------------|
-|Assay Type |paired-end plate-based Smart-seq2 |
+|Assay Type |Paired- or single-end plate-based and fluidigm Smart-seq2 |
 | Overall workflow  |Quality control module and transcriptome quantification module | [Code available from Github](https://github.com/HumanCellAtlas/skylab/tree/master/pipelines/smartseq2_single_sample) |
 | Workflow language |WDL          |[openWDL](https://github.com/openwdl/wdl)|
 | Genomic reference sequence|GRCh38 human genome primary sequence|[GENCODE](https://www.gencodegenes.org/human/release_27.html)|
