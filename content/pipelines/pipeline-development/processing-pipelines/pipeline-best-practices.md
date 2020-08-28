@@ -10,15 +10,16 @@ description: "Overview of best practices for building data processing pipelines 
 ## Goals
 The following broad goals motivate our best practices. Here we describe them and give insight as to why these goals are important. We then explore best practices and examples to give you a sense of how to apply these goals.
 
-- The best pipelines should be automated.
-- The best pipelines should be easily testable.
-- The best pipelines should be portable.
-- The best pipelines should scale to their data.
-- The best pipelines should be easy to maintain.
+Overall, the best pipelines should be:
+- automated
+- easily testable
+- portable
+- scalable to their data
+- easy to maintain
   
 ## Automation
 ### What is Automation?
-  Automation refers to the ability of a pipeline to run, end-to-end, without human intervention.
+Automation refers to the ability of a pipeline to run, end-to-end, without human intervention.
   
 ### Why do we care about automation?
 Pipelines cannot scale to large amounts of data, or many runs, if manual steps must be performed within the pipeline. They also cannot be part of an automated system if they in fact are not automated. Manual steps will bottleneck your entire system and can require unmanageable operations. Moreover, manual steps performed by humans will vary, and will promote the production of data that can not be appropriately harmonized.
@@ -41,7 +42,7 @@ The availability of test data enables validation that the pipeline can produce t
 
 We have developed a benchmarking platform, called [Unity](https://unity.broadinstitute.org/), to facilitate efforts to develop and test pipelines and pipeline modules.
 
-- *Do*: Provide toy test data with your pipeline/tool.
+- *Do*: Provide example test data with your pipeline/tool.
 - *Do*: Provide the results of an execution of your pipeline/tool on the test data.
 - *Do*: Refer to at least one real data set appropriate for your tool/pipeline with example output from an execution of your pipeline or tool.
 - *Do*: Provide a checker tool.
@@ -62,12 +63,12 @@ _Impact._ Pipelines will have greatest impact when they can be leveraged in mult
   
 _Maintainability._ Over the long term, it is easier to maintain pipelines that can be run in multiple environments. Portability avoids being tied to specific infrastructure and enables ease of deployment to development environments.
 
-Within the scope of the HCA, to ensure that others will be able to use your pipeline, avoid building in assumptions about environments and infrastructures in which it will run. We provide a portability service to test whether your pipeline can run in a variety of execution environments, including those used by the HCA and others. Portability is discussed in more detail in the *Guides* section; [contact us](mailto:data-help@humancellatlas.org) to use the service.
+Within the scope of the HCA, to ensure that others will be able to use your pipeline, avoid building in assumptions about environments and infrastructures in which it will run. 
 
 ### Configurability for running on different technical infrastructures.
 Code should not change to enable a pipeline to run on a different technical architecture; this change in execution environment should be configurable outside of the pipeline code.
 
-- *DO*: Use a workflow language that allows a separation between the code that executes the data processing logic and the logic to run the pipeline on an infrastructure. [WDL](https://software.broadinstitute.org/wdl/documentation) and [CWL](https://www.commonwl.org/user_guide/rec-practices) languages have this feature.
+- *Do*: Use a workflow language that allows a separation between the code that executes the data processing logic and the logic to run the pipeline on an infrastructure. [WDL](https://software.broadinstitute.org/wdl/documentation) and [CWL](https://www.commonwl.org/user_guide/rec-practices) languages have this feature.
 - *Don’t*: Put logic to run the pipeline in the same code that executes the logic to process the data.
 
 ### Separation between the environment, the execution of the pipeline, and the pipeline itself.
