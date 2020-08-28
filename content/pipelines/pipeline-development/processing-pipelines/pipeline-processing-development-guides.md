@@ -14,5 +14,3 @@ We provide pipeline development guides, described briefly below, to help you lea
 
 [Quick Start for Building Pipelines](/pipelines/building-pipelines): Learn about the variety of resources that have helped us with our pipeline building projects. Also, scroll down the page to find information about DCP-hosted meetings, events, and Slack channels you can join.
 
-[Pipeline Testing Guide](/pipelines/testing-pipelines): Test whether your pipeline can execute to completion and produce the expected outputs in HCA DCP, as well as other, execution environments.
-
