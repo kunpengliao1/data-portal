@@ -110,4 +110,4 @@ Outputs of the pipeline include:
 3. Cell metadata, including cell metrics
 4. Gene metadata, including gene metrics
 
-
+For more detailed information about the Optimus pipeline, please see [here](https://github.com/broadinstitute/warp/tree/master/pipelines/skylab/optimus).
