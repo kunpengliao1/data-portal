@@ -16,5 +16,5 @@ Matrices are provided in [Loom](http://loompy.org/) file format and be downloade
 Loom files can be explored using multiple Python- and R-supported downstream analysis tools, including [Seurat](https://satijalab.org/seurat/), [SCANPY](https://github.com/theislab/scanpy), and [Pegasus](https://pegasus.readthedocs.io/en/latest/). 
 
 
-## Contributor-generated matrices
+## Contributor-generated Matrix File Format
 When available, contributor-generated expression matrices will be provided on project pages. These matrices will vary in file format. 
