@@ -40,8 +40,6 @@ A testable pipeline is one in which isolated sections or the full pipeline can c
 ### Why do we care about testabilty?
 The availability of test data enables validation that the pipeline can produce the desired outcome. Formulation of a testing checklist allows the developer to clearly define the capabilities of the pipeline and the parameters of its use.
 
-We have developed a benchmarking platform, called [Unity](https://unity.broadinstitute.org/), to facilitate efforts to develop and test pipelines and pipeline modules.
-
 - *Do*: Provide example test data with your pipeline/tool.
 - *Do*: Provide the results of an execution of your pipeline/tool on the test data.
 - *Do*: Refer to at least one real data set appropriate for your tool/pipeline with example output from an execution of your pipeline or tool.
