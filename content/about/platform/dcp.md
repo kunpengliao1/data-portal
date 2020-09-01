@@ -7,7 +7,10 @@ draft: false
 
 # About the Data Coordination Platform
 
-The Human Cell Atlas (HCA) community is profiling millions of human cells, a process that generates enormous amounts of data that scientists need to store, standardize and interpret. To help coordinate this data collection and processing, the HCA established the **Data Coordination Platform (DCP), a cloud-based platform where scientists can share, organise and interrogate single-cell data**.
+The Human Cell Atlas (HCA) community is profiling millions of human cells, a process that generates enormous amounts of data that scientists need to store, standardize and interpret. To help coordinate this data collection and processing, the HCA established the **Data Coordination Platform (DCP), a public, cloud-based platform where scientists can share, organise and interrogate single-cell data**.
+
+
+<img src="../_images/Data_flow.png" width="750">
 
 The platform is operated by a dedicated team of scientists, engineers and bioinformaticians from the European Bioinformatics Institute (EBI), the Broad Institute (Broad), and the University of California, Santa Cruz (UCSC). 
 
