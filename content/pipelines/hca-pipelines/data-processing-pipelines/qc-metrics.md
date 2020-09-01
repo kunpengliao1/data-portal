@@ -67,12 +67,12 @@ This pipeline processes genomic data generated from the [10x Genomics](https://w
 |`n_genes`|[SC Tools](https://github.com/HumanCellAtlas/sctools/tree/master/src/sctools/metrics)| The number of genes detected by this cell. [Metrics Definitions](https://sctools.readthedocs.io/en/latest/sctools.metrics.html#sctools.metrics.aggregator.CellMetrics.n_genes)|
 |`genes_detected_multiple_observations`|[SC Tools](https://github.com/HumanCellAtlas/sctools/tree/master/src/sctools/metrics)| The number of genes that are observed by more than one read in this cell. [Metrics Definitions](https://sctools.readthedocs.io/en/latest/sctools.metrics.html#sctools.metrics.aggregator.CellMetrics.genes_detected_multiple_observations)|
 | `reads_unmapped`| [SC Tools](https://github.com/HumanCellAtlas/sctools/blob/master/src/sctools/metrics/aggregator.py) | Reads that are non-transcriptomic |
-| `emptydrops_FDR` | [dropletUtils](https://bioconductor.org/packages/release/bioc/html/DropletUtils.html) | False Discovery Rate (FDR) for being a non-empty droplet; not included when running in sn_rna mode |
-| `emptydrops_IsCell` | [dropletUtils](https://bioconductor.org/packages/release/bioc/html/DropletUtils.html) | Binarized call of cell/background based on predefined FDR cutoff; not included when running in sn_rna mode |
-| `emptydrops_Limited` | [dropletUtils](https://bioconductor.org/packages/release/bioc/html/DropletUtils.html) | Indicates whether a lower p-value could be obtained by increasing the number of iterations; not included when running in sn_rna mode |
-|`emptydrops_LogProb` | [dropletUtils](https://bioconductor.org/packages/release/bioc/html/DropletUtils.html) | The log-probability of observing the barcode’s count vector under the null model; not included when running in sn_rna mode |
-| `emptydrops_PValue` | [dropletUtils](https://bioconductor.org/packages/release/bioc/html/DropletUtils.html) | Numeric, the Monte Carlo p-value against the null model; not included when running in sn_rna mode | 
-| `emptydrops_Total` | [dropletUtils](https://bioconductor.org/packages/release/bioc/html/DropletUtils.html) | Numeric, the total read counts for each barcode; not included when running in sn_rna mode |
+| `emptydrops_FDR` | [dropletUtils](https://bioconductor.org/packages/release/bioc/html/DropletUtils.html) | False Discovery Rate (FDR) for being a non-empty droplet; not included when running in single-nuclei mode |
+| `emptydrops_IsCell` | [dropletUtils](https://bioconductor.org/packages/release/bioc/html/DropletUtils.html) | Binarized call of cell/background based on predefined FDR cutoff; not included when running in single-nuclei mode |
+| `emptydrops_Limited` | [dropletUtils](https://bioconductor.org/packages/release/bioc/html/DropletUtils.html) | Indicates whether a lower p-value could be obtained by increasing the number of iterations; not included when running in single-nuclei mode |
+|`emptydrops_LogProb` | [dropletUtils](https://bioconductor.org/packages/release/bioc/html/DropletUtils.html) | The log-probability of observing the barcode’s count vector under the null model; not included when running in single-nuclei mode |
+| `emptydrops_PValue` | [dropletUtils](https://bioconductor.org/packages/release/bioc/html/DropletUtils.html) | Numeric, the Monte Carlo p-value against the null model; not included when running in single-nuclei mode | 
+| `emptydrops_Total` | [dropletUtils](https://bioconductor.org/packages/release/bioc/html/DropletUtils.html) | Numeric, the total read counts for each barcode; not included when running in single-nuclei mode |
 
 
 | Gene Metrics                  | Program            |Details                 | 
@@ -103,3 +103,5 @@ This pipeline processes genomic data generated from the [10x Genomics](https://w
 |`molecules_with_single_read_evidence`|[SC Tools](https://github.com/HumanCellAtlas/sctools/tree/master/src/sctools/metrics)|The number of molecules associated with this entity that are observed by only one read. [Metrics Definitions](https://sctools.readthedocs.io/en/latest/sctools.metrics.html#sctools.metrics.aggregator.CellMetrics.molecules_with_single_read_evidence)|
 |`number_cells_detected_multiple`|[SC Tools](https://github.com/HumanCellAtlas/sctools/tree/master/src/sctools/metrics)|The number of cells which observe more than one read of this gene. [Metrics Definitions](https://sctools.readthedocs.io/en/latest/sctools.metrics.html#sctools.metrics.aggregator.GeneMetrics.number_cells_detected_multiple)|
 |`number_cells_expressing`|[SC Tools](https://github.com/HumanCellAtlas/sctools/tree/master/src/sctools/metrics)|The number of cells that detect this gene. [Metrics Definitions](https://sctools.readthedocs.io/en/latest/sctools.metrics.html#sctools.metrics.aggregator.GeneMetrics.number_cells_expressing)|
+
+
