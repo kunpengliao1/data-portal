@@ -110,4 +110,9 @@ Outputs of the pipeline include:
 3. Cell metadata, including cell metrics
 4. Gene metadata, including gene metrics
 
-For more detailed information about the Optimus pipeline, please see [here](https://github.com/broadinstitute/warp/tree/master/pipelines/skylab/optimus).
+## Try Optimus in Terra
+
+The Optimus pipeline is currently available on the cloud-based platform [Terra](https://app.terra.bio). If you have a Terra account, you can access the Featured Workspace using this address: https://app.terra.bio/#workspaces/featured-workspaces-hca/HCA_Optimus_Pipeline. The workspace is preloaded with instructions and sample data. For more information on using the Terra platform, please view the [Support Center](support.terra.bio).
+
+## Learn More About Optimus
+For more detailed information about the Optimus pipeline, please see the [Optimus ReadMe](https://github.com/broadinstitute/warp/tree/master/pipelines/skylab/optimus) in GitHub.
