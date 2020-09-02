@@ -12,7 +12,7 @@ The Human Cell Atlas (HCA) community is profiling millions of human cells, a pro
 
 <img src="../_images/Data_flow.png" width="750">
 
-The platform is operated by a dedicated team of scientists, engineers and bioinformaticians from the European Bioinformatics Institute (EBI), the Broad Institute (Broad), and the University of California, Santa Cruz (UCSC). 
+The platform was developed and is operated by a dedicated team of scientists, engineers and bioinformaticians from the European Bioinformatics Institute (EBI), the Broad Institute (Broad), the Chan Zuckerberg Initiative (CZI) and the University of California, Santa Cruz (UCSC). 
 
 
 ## Data Coordination Platform Strategic Aims
