@@ -55,4 +55,10 @@ To assess the quality of the input data, this module uses a pre-constructed inde
 
 This second module uses RSEM (RNA-Seq by Expectation Maximization) to quantify the transcript abundance. RSEM uses a statistical model that accounts for the uncertainties of read mapping, as RNA-Seq reads do not always map uniquely to a single gene. Using a pre-constructed transcriptome index created from GRCh38 and GENCODE Annotation v27, HISAT2 aligns the test data with the reference transcriptome and a BAM file of aligned data is generated. The RSEM program rsem-calculate-expression is then used to estimate gene/isoform expression levels, resulting in an  output file including expected_counts, TPM (Transcripts Per Million), or FPKM (Fragments Per Kilobase of transcript per Million mapped reads).
 
-More detailed information about this pipeline can be found [here](https://github.com/broadinstitute/warp/tree/master/pipelines/skylab/smartseq2_single_sample).
+## Try the Smart-seq2 Pipleine in Terra
+
+The Smart-seq2 pipeline is currently available on the cloud-based platform [Terra](https://app.terra.bio). If you have a Terra account, you can access the Featured Workspace using this address: https://app.terra.bio/#workspaces/featured-workspaces-hca/HCA_Optimus_Pipeline. The workspace is preloaded with instructions and sample data. For more information on using the Terra platform, please view the [Support Center](support.terra.bio).
+
+## Learn More About the Smart-seq2 Pipeline
+
+More detailed information about this pipeline can be found in the [Smart-seq2 ReadMe](https://github.com/broadinstitute/warp/tree/master/pipelines/skylab/smartseq2_single_sample) on GitHub.
