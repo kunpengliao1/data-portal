@@ -57,7 +57,7 @@ This second module uses RSEM (RNA-Seq by Expectation Maximization) to quantify t
 
 ## Try the Smart-seq2 Pipleine in Terra
 
-The Smart-seq2 pipeline is currently available on the cloud-based platform [Terra](https://app.terra.bio). If you have a Terra account, you can access the Featured Workspace using this address: https://app.terra.bio/#workspaces/featured-workspaces-hca/HCA_Optimus_Pipeline. The workspace is preloaded with instructions and sample data. For more information on using the Terra platform, please view the [Support Center](support.terra.bio).
+The Smart-seq2 pipeline is currently available on the cloud-based platform [Terra](https://app.terra.bio). If you have a Terra account, you can access the Featured Workspace using this address: https://app.terra.bio/#workspaces/featured-workspaces-hca/HCA_Optimus_Pipeline. The workspace is preloaded with instructions and sample data. For more information on using the Terra platform, please view the [Support Center](https://support.terra.bio/hc/en-uso).
 
 ## Learn More About the Smart-seq2 Pipeline
 
