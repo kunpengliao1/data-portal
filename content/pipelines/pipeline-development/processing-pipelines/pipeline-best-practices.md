@@ -100,7 +100,7 @@ Software is a living document that should be easily read and understood, regardl
 - *Don’t*: Write a large amount of documentation that does not live beside or within the code itself (it will become out of date).
 
 ### Modularity
-Modularity enables small units of code to be independently benchmarked, validated, and exchanged. Modularity is very useful because, as science or technology changes, sections of a tool can be updated, benchmarked, and exchanged as small units, enabling more rapid updates and better adaptation to innovation. 
+Modularity enables small units of code to be independently benchmarked, updated, validated, and exchanged as science or technology changes. Using these small units enables more rapid updates and better adaptation to innovation. 
 
 - *Do*: Save progress by creating intermediate output between modules as they successfully complete.
 - *Don’t*: Make monolithic tasks that perform many functionalities for the sake of speed.
@@ -113,7 +113,7 @@ We recommend using standard file formats and interfaces. In computational biolog
 - *Do*: Make both the images and the build files (Dockerfile) available to document the environment. [More on Dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/).
 
 ## Versioning
-Versioning pipelines and associated Docker images allows you to determine when and how data is created (provenance). As you make improvements and changes to your pipeline, it is important to know which version of the pipeline and software you used to create a given dataset so that it can be easily reproduced. This not only facilitates scientific reproducibility for the greater community, it also allows you to verify that new pipeline changes produce consistent results. We recommend choosing a consistent versioning system (for example, the [semantic system](https://semver.org/)) and tracking pipeline changes in a changelog.
+Versioning pipelines and associated Docker images allows you to determine when and how data is created (provenance). As you make improvements and changes to your pipeline, it is important to know which version of the pipeline and software you used to create a given dataset so that it can be easily reproduced. This not only facilitates scientific reproducibility for the greater community, it also allows you to verify that new pipeline changes produce consistent results. We recommend choosing a consistent versioning system (for example, the [semantic system](https://semver.org/)) and tracking pipeline changes in a [changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## Licensing
 
