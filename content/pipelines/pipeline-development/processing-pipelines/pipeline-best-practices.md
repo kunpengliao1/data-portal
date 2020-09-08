@@ -100,18 +100,20 @@ Software is a living document that should be easily read and understood, regardl
 - *Don’t*: Write a large amount of documentation that does not live beside or within the code itself (it will become out of date).
 
 ### Modularity
-Modularity enables small units of code to be independently benchmarked, validated, and exchanged. Modularity is very useful because, as science or technology changes, sections of a tool can be updated, benchmarked, and exchanged as small units, enabling more rapid updates and better adaptation to innovation. See [this doc](https://docs.google.com/document/d/1DlKdI6znEzdcuBBUnaJnS20GUb20zw4MgSgF12jfADU/edit?ts=5b6dffd9) for more about modularity and its implementation in the Optimus 10X v2 pipeline, currently in development.
+Modularity enables small units of code to be independently benchmarked, validated, and exchanged. Modularity is very useful because, as science or technology changes, sections of a tool can be updated, benchmarked, and exchanged as small units, enabling more rapid updates and better adaptation to innovation. 
 
 - *Do*: Save progress by creating intermediate output between modules as they successfully complete.
 - *Don’t*: Make monolithic tasks that perform many functionalities for the sake of speed.
 - *Don’t*: Break every functionality of a pipeline into a separate module. (This contrasts with not making monolithic tasks; there is an optimum between monolithic tasks and highly resolved modularity that is the goal. One can use benchmarking, the tendency for functionality to be updated, and how dependent functionalities are to get a sense of what should be separate and what can be combined.)
 
 ### Leveraging Standards
-We recommend using standard file formats and interfaces. In computational biology, [GA4GH](https://www.ga4gh.org/ga4ghtoolkit/genomicdatatoolkit/) is a great source of these standards. In cases where new formats are needed, we recommend working with a standards group like [GA4GH](https://www.ga4gh.org/) if possible.
+We recommend using standard file formats and interfaces. In computational biology, [GA4GH](https://www.ga4gh.org/genomic-data-toolkit/) is a great source of these standards. In cases where new formats are needed, we recommend working with a standards group like [GA4GH](https://www.ga4gh.org/) if possible.
 
 - *Do*: When using containerization technologies, follow best practices to assure associated images do not update without explicit updates.
 - *Do*: Make both the images and the build files (Dockerfile) available to document the environment. [More on Dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/).
 
+## Versioning
+Versioning pipelines and associated Docker images allows you to determine when and how data is created (provenance). As you make improvements and changes to your pipeline, it is important to know which version of the pipeline and software you used to create a given dataset so that it can be easily reproduced. This not only facilitates scientific reproducibility for the greater community, it also allows you to verify that new pipeline changes produce consistent results. We recommend choosing a consistent versioning system (for example, the [semantic system](https://semver.org/)) and tracking pipeline changes in a changelog.
 
 ## Licensing
 
