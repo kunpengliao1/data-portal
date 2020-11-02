@@ -11,7 +11,7 @@ The long-term goal of the Optimus workflow is to support any 3 prime single-cell
 
 ## Commonalities Among Sequencing Assays
 
-The introduction of droplet-based technologies such as inDrop ([Klein, et al., 2015](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4441768/)) and Drop-seq ([Macosko, et al., 2015](https://www.sciencedirect.com/science/article/pii/S0092867415005498)) moved the throughput of a single-cell RNA sequencing experiment from hundreds to thousands of cells. Technology developed by [10x Genomics](https://www.10xgenomics.com) further increased throughput to hundreds of thousands of cells and has opened up the possibility of creating datasets for millions of cells. Common among many of the single cell transcriptomics high-throughput technologies is the use of:
+The introduction of droplet-based technologies such as inDrop ([Klein, et al., 2015](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4441768/)) and Drop-seq ([Macosko, et al., 2015](https://www.sciencedirect.com/science/article/pii/S0092867415005498)) moved the throughput of a single-cell RNA sequencing experiment from hundreds to thousands of cells. Technology developed by [10x Genomics](https://www.10xgenomics.com) further increased throughput to hundreds of thousands of cells and has opened up the possibility of creating datasets for millions of cells. Common among many of the single-cell transcriptomics high-throughput technologies is the use of:
 
 * microfluidics, which captures individual cells in oil droplets containing barcoded beads and enzymes
 * short read 3’ single-strand DNA sequencing 
@@ -29,7 +29,7 @@ The bead-specific barcodes and UMIs are encoded on sequencing primers that also 
 | Genomic Reference Sequence| GRCh38 human genome primary sequence and M21 (GRCm38.p6) mouse genome primary sequence | GENCODE [Human](https://www.gencodegenes.org/human/release_27.html) and [Mouse](https://www.gencodegenes.org/mouse/release_M21.html) |
 | Transcriptomic Reference Annotation | V27 GenCode human transcriptome and M21 mouse transcriptome | GENCODE [Human](ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_27/gencode.v27.annotation.gtf.gz) and [Mouse](ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M21/gencode.vM21.annotation.gff3.gz) |
 | Aligner           | STAR       | [Dobin, et al.,2013](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3530905/) |
-| Transcript Quantification |Utilities for processing large-scale single cell datasets |[Sctools](https://github.com/HumanCellAtlas/sctools) |                      
+| Transcript Quantification |Utilities for processing large-scale single cell datasets |[sctools](https://github.com/HumanCellAtlas/sctools) |                      
 |Data Input File Format |File format in which sequencing data is provided |[FASTQ](https://academic.oup.com/nar/article/38/6/1767/3112533) |                       
 | Data Output File Format | File formats in which Optimus output is provided | [BAM](http://samtools.github.io/hts-specs/), [Loom version 3](http://loompy.org/) |
 
@@ -37,7 +37,7 @@ The bead-specific barcodes and UMIs are encoded on sequencing primers that also 
 
 Here we describe the modules of Optimus; [the code](https://github.com/broadinstitute/warp/blob/master/pipelines/skylab/optimus/Optimus.wdl) and [library of tasks](https://github.com/broadinstitute/warp/tree/master/tasks/skylab) are available through GitHub.
 
-The workflow runs in two modes: single-cell (sc_rna) or single-nuclei (sn_rna). When appropriate, differences between the modes are noted.
+The workflow runs in two modes: single-cell (`sc_rna`) or single-nuclei (`sn_rna`). When appropriate, differences between the modes are noted.
 
 Overall, the workflow:
 1. corrects cell barcodes and Unique Molecular Identifiers (UMIs)
@@ -55,25 +55,24 @@ A general overview of the pipeline is shown below, followed by more detailed des
 
 ## Input Data Preparation 
 
-Each 10x v2 and v3 3’ sequencing experiment generates triplets of Fastq files:
+Each 10x v2 and v3 3’ sequencing experiment generates triplets of FASTQ files:
 
 1. forward reads (R1), containing the unique molecular identifier and cell barcode sequences
 2. reverse reads (R2), which is the alignable genomic information from the mRNA transcript 
 3. an index fastq file that contains the sample barcodes, when provided by the sequencing facility
 
-Because the pipeline processing steps require a BAM file format, the first step of Optimus is to [convert](https://broadinstitute.github.io/picard/command-line-overview.html#FastqToSam) the R2 Fastq file, containing the alignable genomic information, to a BAM file. Next, the [Attach10xBarcodes](https://github.com/broadinstitute/warp/blob/master/tasks/skylab/Attach10xBarcodes.wdl) step appends the UMI and Cell Barcode sequences from R1 to the corresponding R2 sequence as tags, in order to properly label the genomic information for alignment.
+Because the pipeline processing steps require a BAM file format, the first step of Optimus is to [convert](https://github.com/broadinstitute/warp/blob/develop/tasks/skylab/FastqProcessing.wdl) the R2 FAST files, containing the alignable genomic information, to  BAM files. Next, the [FastqProcessing](https://github.com/broadinstitute/warp/blob/develop/tasks/skylab/FastqProcessing.wdl) step appends the UMI and Cell Barcode sequences from R1 to the corresponding R2 sequence as tags, in order to properly label the genomic information for alignment.
 
 ### Cell Barcode Correction
 
-Although the function of the cell barcodes is to identify unique cells, barcode errors can arise during sequencing (such as incorporation of the barcode into contaminating DNA or sequencing and PCR errors), making it difficult to distinguish unique cells from artifactual appearances of the barcode. Barcode errors are evaluated in the [Attach10xBarcodes](https://github.com/broadinstitute/warp/blob/master/tasks/skylab/Attach10xBarcodes.wdl) step mentioned above, which compares the sequences against a whitelist of known barcode sequences.
+Although the function of the cell barcodes is to identify unique cells, barcode errors can arise during sequencing (such as incorporation of the barcode into contaminating DNA or sequencing and PCR errors), making it difficult to distinguish unique cells from artifactual appearances of the barcode. Barcode errors are evaluated in the [FastqProcessing](https://github.com/broadinstitute/warp/blob/develop/tasks/skylab/FastqProcessing.wdl) step mentioned above, which compares the sequences against a whitelist of known barcode sequences.
 
-The output file contains the reads with correct barcodes, including barcodes that came within one edit distance ([Levenshtein distance](http://www.levenshtein.net/)) of matching the whitelist of barcode sequences and were corrected by this tool. Correct barcodes are assigned a “CB” tag. Uncorrected barcodes (with more than one error) are preserved and given a “CR” (Cell barcode Raw) tag. Cell barcode quality scores are also preserved in the file under the “CY” tag.
+The output BAM files contain the reads with correct barcodes, including barcodes that came within one edit distance ([Levenshtein distance](http://www.levenshtein.net/)) of matching the whitelist of barcode sequences and were corrected by this tool. Correct barcodes are assigned a “CB” tag. Uncorrected barcodes (with more than one error) are preserved and given a “CR” (Cell barcode Raw) tag. Cell barcode quality scores are also preserved in the file under the “CY” tag.
 
-The various BAM files are then [merged, sorted](https://github.com/broadinstitute/warp/blob/master/tasks/skylab/MergeSortBam.wdl) and [split](https://github.com/broadinstitute/warp/blob/master/tasks/skylab/SplitBamByCellBarcode.wdl) into groups according to cell barcode to facilitate the following processing steps. 
 
 ## Alignment
 
-The [STAR alignment](https://github.com/broadinstitute/warp/blob/master/tasks/skylab/StarAlignBamSingleEnd.wdl) software ([Dobin, et al., 2013](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3530905/)) is used to map barcoded reads in the BAM file to the human genome primary assembly reference. STAR (Spliced Transcripts Alignment to a Reference) is widely-used for RNA-seq alignment and identifies the best matching location(s) on the reference for each sequencing read.
+The [STAR alignment](https://github.com/broadinstitute/warp/blob/master/tasks/skylab/StarAlignBamSingleEnd.wdl) software ([Dobin, et al., 2013](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3530905/)) is used to map barcoded reads in the BAM files to the human genome primary assembly reference. STAR (Spliced Transcripts Alignment to a Reference) is widely-used for RNA-seq alignment and identifies the best matching location(s) on the reference for each sequencing read.
 
 ## Gene Annotation
 
@@ -115,4 +114,4 @@ Outputs of the pipeline include:
 The Optimus pipeline is currently available on the cloud-based platform [Terra](https://app.terra.bio). If you have a Terra account, you can access the Featured Workspace using this address: https://app.terra.bio/#workspaces/featured-workspaces-hca/HCA_Optimus_Pipeline. The workspace is preloaded with instructions and sample data. For more information on using the Terra platform, please view the [Support Center](https://support.terra.bio/hc/en-us).
 
 ## Learn More About Optimus
-For more detailed information about the Optimus pipeline, please see the [Optimus ReadMe](https://github.com/broadinstitute/warp/tree/master/pipelines/skylab/optimus) in GitHub.
+For more detailed information about the Optimus pipeline, please see the [Optimus overview](https://broadinstitute.github.io/warp/documentation/Pipelines/Optimus_Pipeline/) in the WARP repository documentation.
