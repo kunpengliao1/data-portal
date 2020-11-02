@@ -18,7 +18,7 @@ The SMART acronym, which stands for Switching Mechanism At the end of the 5’-e
 
 ## Overview of the Pipeline
 
-The Smart-seq2 pipeline processes data generated from plate-based Smart-seq2 scRNA sequencing protocols. The pipeline is comprised of two modules: a quality control module, which generates post-alignment quality control metrics, and a transcriptome quantification module, which aligns reads to the transcriptome and estimates transcript expression levels. 
+The Smart-seq2 pipeline processes data generated from plate- or fluidigm-based Smart-seq2 scRNA sequencing protocols. The pipeline is comprised of two modules: a quality control module, which generates post-alignment quality control metrics, and a transcriptome quantification module, which aligns reads to the transcriptome and estimates transcript expression levels. 
 
 
 ## Quick Start Table
@@ -29,10 +29,10 @@ The Smart-seq2 pipeline processes data generated from plate-based Smart-seq2 scR
 | Overall workflow  |Quality control module and transcriptome quantification module | [Code available from GitHub](https://github.com/broadinstitute/warp/blob/master/pipelines/skylab/smartseq2_single_sample/SmartSeq2SingleSample.wdl) |
 | Workflow language |WDL          |[openWDL](https://github.com/openwdl/wdl)|
 | Genomic reference sequence|GRCh38 human genome primary sequence|[GENCODE](https://www.gencodegenes.org/human/release_27.html)|
-|Gene Model         |GENCODE v27 PRI GTF and Fasta files   |[GENCODE](https://www.gencodegenes.org/human/release_27.html)|
+|Gene Model         |GENCODE v27 PRI GTF and FASTA files   |[GENCODE](https://www.gencodegenes.org/human/release_27.html)|
 | Aligner           |HISAT2       |[Kim, et al.,2015](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4655817/); [HISAT2 tool](https://ccb.jhu.edu/software/hisat2/manual.shtml)|
 |QC                 |Metrics determined using Picard command line tools |[Picard Tools](https://broadinstitute.github.io/picard/) |          
-| Estimation of gene expression |RSEM ([rsem-calculate-expression](http://deweylab.biostat.wisc.edu/rsem/rsem-calculate-expression.html)) is used to estimate the gene expression profile. The input of RSEM is a bam file aligned by HISAT2. | [Li and Dewey, 2011](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-12-323)|
+| Estimation of gene expression |RSEM ([rsem-calculate-expression](http://deweylab.biostat.wisc.edu/rsem/rsem-calculate-expression.html)) is used to estimate the gene expression profile. The input of RSEM is a BAM file aligned by HISAT2. | [Li and Dewey, 2011](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-12-323)|
 |Data Input File Format |File format in which sequencing data is provided |[FASTQ](https://academic.oup.com/nar/article/38/6/1767/3112533) |
 | Data Output File Format | File formats in which Smart-seq2 pipeline output is provided |[BAM](http://samtools.github.io/hts-specs/), [Loom version 3](http://loompy.org/)|
 
@@ -44,7 +44,7 @@ Choice of appropriate reference sequences and annotations are critical for optim
 
 ### Quality Control Module
 
-To assess the quality of the input data, this module uses a pre-constructed index of species reference information: GRCh38, GENCODE Annotation v27, and dbSNP150 ([see code for more details](https://github.com/broadinstitute/warp/blob/master/pipelines/skylab/smartseq2_single_sample/SmartSeq2SingleSample.wdl). HISAT2 is used to perform a graph-based alignment of sample data to the  reference genome to determine the presence of non-transcript sequences and true transcript sequences, taking into account the presence of single-nucleotide polymorphisms (based on dbSNP150). The output is a BAM file. Quality control measurements are then calculated using [Picard tools](http://broadinstitute.github.io/picard/), command line tools used for working with high-throughput sequencing data. This pipeline uses a number of these tools, but the main modules are listed below. Follow the link for a detailed explanation of each tool; a more detailed table of our QC metrics is in the [QC Metrics](/pipelines/qc-metrics) guide.
+To assess the quality of the input data, this module uses a pre-constructed index of species reference information: GRCh38, GENCODE Annotation v27, and dbSNP150 ([see code for more details](https://github.com/broadinstitute/warp/blob/master/pipelines/skylab/smartseq2_single_sample/SmartSeq2SingleSample.wdl). HISAT2 is used to perform a graph-based alignment of sample data to the reference genome to determine the presence of non-transcript sequences and true transcript sequences, taking into account the presence of single-nucleotide polymorphisms (based on dbSNP150). The output is a BAM file. Quality control measurements are then calculated using [Picard tools](http://broadinstitute.github.io/picard/), command line tools used for working with high-throughput sequencing data. This pipeline uses a number of these tools, but the main modules are listed below. Follow the link for a detailed explanation of each tool; a more detailed table of our QC metrics is in the [QC Metrics](/pipelines/qc-metrics) guide.
 * [CollectAlignmentSummaryMetrics](http://broadinstitute.github.io/picard/command-line-overview.html#CollectAlignmentSummaryMetrics) - The quality of the read alignments and the proportion of reads that passed signal-to-noise threshold filters.
 * [CollectRnaSeqMetrics](http://broadinstitute.github.io/picard/command-line-overview.html#CollectRnaSeqMetrics) - Distribution of bases within the transcripts, as well as the median depth, ratio of 5 prime/3 prime biases, and the numbers of reads with correct or incorrect strand designation.
 * [MarkDuplicates](http://broadinstitute.github.io/picard/command-line-overview.html#MarkDuplicatesWithMateCigar) - Duplicate reads that originate from the same fragment of DNA are identified and tagged.
@@ -61,4 +61,4 @@ The Smart-seq2 pipeline is currently available on the cloud-based platform [Terr
 
 ## Learn More About the Smart-seq2 Pipeline
 
-More detailed information about this pipeline can be found in the [Smart-seq2 ReadMe](https://github.com/broadinstitute/warp/tree/master/pipelines/skylab/smartseq2_single_sample) on GitHub.
+More detailed information about this pipeline can be found in the [Smart-seq2 overview](https://broadinstitute.github.io/warp/documentation/Pipelines/Smart-seq2_Single_Sample_Pipeline/) in the WARP repository documentation.
