@@ -7,7 +7,7 @@ description: "An overview of the available matrices"
 
 # HCA DCP Data Matrix Overview
 
-You DCP provides cell by gene matrices for data processed with standardized pipelines. Additionally, any researcher who contributes HCA data may optionally provide a "contributor generated" cell by gene matrix. This overview describes both matrices, how to download them, and how to link them back to the metadata.
+The DCP provides cell by gene matrices for data processed with standardized pipelines. Additionally, any researcher who contributes HCA data may optionally provide a "contributor generated" cell by gene matrix. This overview describes both matrices, how to download them, and how to link them back to the metadata.
 
 ## DCP generated matrices
 After data is processed with standardized DCP pipelines, two types of cell by gene matrices are available for download depending on the library construction method:
