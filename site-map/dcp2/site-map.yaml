@@ -244,7 +244,7 @@
       key: "help"
       primaryLinks:
         - name: "Help & FAQ"
-          key: "/help/help/help-and-faq"
+          key: "/help/help/dcp2/help-and-faq"
           path: "/help"
 - name: "Metadata"
   description: "Fields used to describe datasets in the Human Cell Atlas"
