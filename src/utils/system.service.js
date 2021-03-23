@@ -27,8 +27,7 @@ export function healthCheck() {
  */
 function bindHealthCheckResponse(response) {
 
-    // Temporarily disable system status banner for DCP 1 - see #769.
     return {
-        healthy: EnvironmentService.isV2() ? response.up : true/*response.status === "ok"*/
+        healthy: response.up
     };
 }

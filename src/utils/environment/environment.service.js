@@ -41,7 +41,7 @@ export function getDefaultCatalog() {
 }
 
 /**
- * Returns true if the current content version is two i.e. i.e. the new “cgl” environment.
+ * Returns true if the current content version is two i.e. the new “cgl” environment.
  *
  * @returns {number}
  */

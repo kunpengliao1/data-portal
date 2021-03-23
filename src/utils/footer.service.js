@@ -6,7 +6,6 @@
  */
 
 // App dependencies
-import * as EnvironmentService from "./environment/environment.service";
 import {FooterQuery} from "../hooks/footer-query";
 
 /**
@@ -22,8 +21,6 @@ export function getFooterLinks() {
 /**
  * Returns a filtered list of footer links.
  * All footer links are returned.
- * The exception being that system status is removed when the gatsby content version
- * is equivalent to version 2 i.e. the new “cgl” environment.
  *
  * @returns {boolean}
  */
@@ -33,16 +30,6 @@ function filterFooterLinks(links) {
 
         return [];
     }
-
-    return links.filter(link => {
-
-        const {path} = link;
-
-        if ( path === "/status" ) {
-
-            return !EnvironmentService.isV2();
-        }
-
-        return true;
-    })
+    
+    return links;
 }

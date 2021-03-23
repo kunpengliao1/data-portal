@@ -312,19 +312,6 @@
         - name: ""
           key: "/privacy/privacy/privacy"
           path: "/privacy"
-- name: "System Status"
-  key: "status"
-  path: "/status"
-  position:
-    location: "f"
-    order: 4
-  tabs:
-    - name: ""
-      key: "status"
-      primaryLinks:
-        - name: ""
-          key: "/status/status/system-status"
-          path: "/status"
 - name: "Feedback"
   key: "feedback"
   path: "/feedback"

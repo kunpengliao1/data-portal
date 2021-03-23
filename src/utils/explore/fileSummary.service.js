@@ -9,7 +9,6 @@
  */
 
 // App dependencies
-import * as EnvironmentService from "../environment/environment.service";
 import * as HttpService from '../http.service';
 
 const FILE_SUMMARY_API_URL = process.env.GATSBY_FILE_SUMMARY_API_URL;
@@ -143,14 +142,7 @@ function buildProjectIdSearchTerms(terms) {
  */
 function buildExploreUrl(baseUrl) {
 
-    const exploreUrl = new URL(baseUrl);
-
-    // Add default catalog for v2 environments.
-    if ( EnvironmentService.isV2() ) {
-        exploreUrl.searchParams.append("catalog", EnvironmentService.getDefaultCatalog());
-    }
-    
-    return exploreUrl;
+    return new URL(baseUrl);
 }
 
 /**

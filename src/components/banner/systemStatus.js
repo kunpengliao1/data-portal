@@ -6,11 +6,7 @@
  */
 
 // Core dependencies
-import Link from "gatsby-link";
 import React from "react";
-
-// App dependencies
-import * as EnvironmentService from "../../utils/environment/environment.service";
 
 // Styles
 import fontStyles from "../../styles/fontsize.module.css";
@@ -22,7 +18,6 @@ let classNames = require("classnames");
 class SystemStatus extends React.Component {
 
     render() {
-        const showStatusLink = !EnvironmentService.isV2();
         return (
             <div className={compStyles.systemStatus}>
                 <div className={classNames(globalStyles.bannerWrapper, compStyles.systemStatusWrapper)}>
@@ -30,10 +25,7 @@ class SystemStatus extends React.Component {
                     <p className={classNames(fontStyles.s, fontStyles.bgDark)}>
                         <span>One or more of the systems composing the HCA DCP is currently unavailable. </span>
                         <span>
-                            <span>Please try again later</span>
-                            {showStatusLink ?
-                                <span>, or monitor the full system status <Link to="/status">here</Link>.</span> :
-                                <span>.</span>}
+                            <span>Please try again later.</span>
                         </span>
                     </p>
                 </div>
