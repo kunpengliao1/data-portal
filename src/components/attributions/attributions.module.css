@@ -5,15 +5,15 @@
  * Style definitions specific to the HCA Data Portal attributions component.
  */
 
-/* Attributions */
-.attributions {
-	align-items: flex-start;
-	display: flex;
+/* Attribution - trademark. */
+.trademark {
+    align-items: flex-start;
+    display: flex;
 }
 
-/* Icon */
-.attributions .mosaic {
-	height: 40px;
-	margin: 4px 0;
-	padding-right: 8px;
+/* HCA trademark. */
+.trademark__image {
+    height: 40px;
+    margin: 4px 0;
+    padding-right: 8px;
 }

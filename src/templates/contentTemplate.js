@@ -31,6 +31,7 @@ let classNames = require('classnames');
 const renderAst = new rehypeReact({
     createElement: React.createElement,
     components: {
+        "attributions": Attributions,
         "data-lifecycle-diagram": DataLifecycleDiagram,
         "internal-link": InternalLink,
         "link-to-browser": LinkToBrowser,
@@ -61,7 +62,6 @@ export default function Template({data, location}) {
                     <div className={globalStyles.md}>{renderAst(htmlAst)}</div>}
                 {linked && (componentName === 'analyze') ?
                     <Analyze linked={linked}/> : null}
-                {componentName === 'attributions' ? <Attributions/> : null}
                 {showEditPage ?
                     <a className={classNames(globalStyles.editContent, globalStyles.editContentSeparator)}
                        href={editPath} target='_blank' rel='noopener noreferrer'>Improve this page</a> : null}
