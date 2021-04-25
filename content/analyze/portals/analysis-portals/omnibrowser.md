@@ -16,7 +16,8 @@ The underlying database of OmniBrowser is currently the largest curated scRNA-se
 
 Datasets are constantly updated on OmniBrowser in order to support the constantly growing demands from a board range of customers. As datasets and analytical functions continue to expand on the OmniBrowser platform, Analytical Biosciences will develop and distribute more collection of tools that will make the analyses of big data more efficient and effective in order to advance the biomedical R&D.
 
-![OmniBrowser](../../_images/portals/omnibrowser.jpg)
+![OmniBrowser](https://user-images.githubusercontent.com/82189775/115980307-4aaaaa00-a5be-11eb-94e3-86d546bb4975.jpg)
+
 
 ## Contact
 Analytical BioSciences (<mailto:bd_china@abiosciences.com>)
